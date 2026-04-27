@@ -1,0 +1,38 @@
+{
+  "name": "cn-visualize",
+  "version": "1.0.0",
+  "description": "计算机网络交互式可视化 Skill — 为 408 考研及本科课程生成单文件 HTML 教学页面",
+  "keywords": [
+    "claude-skill",
+    "computer-networks",
+    "visualization",
+    "408",
+    "tcp",
+    "routing",
+    "sliding-window",
+    "education",
+    "interactive"
+  ],
+  "skill": {
+    "name": "cn-visualize",
+    "entry": "SKILL.md",
+    "assets": [
+      "assets/base.css",
+      "assets/boilerplate.js",
+      "assets/animation-html.html"
+    ],
+    "references": [
+      "references/tcp_connection.html"
+    ]
+  },
+  "author": "",
+  "license": "MIT",
+  "homepage": "https://github.com/zzylanmengqingchuan/claude-netphase-visualize",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zzylanmengqingchuan/claude-netphase-visualize.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zzylanmengqingchuan/claude-netphase-visualize/issues"
+  }
+}

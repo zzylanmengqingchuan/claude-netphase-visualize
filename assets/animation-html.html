@@ -1,0 +1,248 @@
+<!--
+  cn-visualize / assets/animation-html.html
+  计算机网络可视化 Skill 的 HTML 动画骨架
+
+  共四种骨架结构，按场景选一个复制到页面对应章节。
+  复制后必须把所有 xx-* 的 id/prefix 替换为实际前缀，
+  避免同页多个动画互相冲突。
+
+  结构 1：时序图（协议交互）            → 配套 boilerplate.js 模板A
+  结构 2：滑动窗口 / 帧序列视图         → 配套 boilerplate.js 模板B
+  结构 3：拓扑图 + 路由表               → 配套 boilerplate.js 模板C
+  结构 4：TCP 拥塞控制折线图            → 配套 boilerplate.js 模板D
+-->
+
+
+<!-- ══════════════════════════════════════════════
+     结构 1：时序图（Sequence Diagram）
+     适用：TCP握手/挥手、DHCP、ARP、DNS、HTTP等
+     ══════════════════════════════════════════════ -->
+<div class="w">
+  <!--
+    SVG 时序图区域
+    两实体生命线示例（两个实体：x=140 和 x=500，viewBox 宽 640）
+    实际使用时根据实体数量调整 x 坐标，确保均匀分布。
+
+    消息箭头使用 <g class="seq-msg" data-idx="N"> 包裹，
+    init 时按 data-idx 顺序逐条显示。
+
+    生命线 x 坐标规范：
+      2个实体：x = 140, 500
+      3个实体：x = 110, 320, 530
+      4个实体：x = 90,  230, 390, 550
+  -->
+  <svg id="xx-seq" width="100%" viewBox="0 0 640 [总高度]">
+    <!-- 实体一方框 -->
+    <rect x="90" y="12" width="100" height="30" rx="5"
+          fill="var(--gnb)" stroke="var(--hl)" stroke-width="1.5"/>
+    <text x="140" y="32" text-anchor="middle" font-size="13"
+          fill="var(--hl)" font-family="var(--sans)" font-weight="600">实体A</text>
+    <!-- 实体一状态标签（可选） -->
+    <text id="xx-state-A" x="140" y="56" text-anchor="middle"
+          font-size="11" fill="var(--fg3)" font-family="var(--mono)">CLOSED</text>
+
+    <!-- 实体二方框 -->
+    <rect x="450" y="12" width="100" height="30" rx="5"
+          fill="var(--gnb)" stroke="var(--nw)" stroke-width="1.5"/>
+    <text x="500" y="32" text-anchor="middle" font-size="13"
+          fill="var(--nw)" font-family="var(--sans)" font-weight="600">实体B</text>
+    <!-- 实体二状态标签（可选） -->
+    <text id="xx-state-B" x="500" y="56" text-anchor="middle"
+          font-size="11" fill="var(--fg3)" font-family="var(--mono)">LISTEN</text>
+
+    <!-- 生命线（虚线，从方框底部到 SVG 底部留 20px）-->
+    <line x1="140" y1="42" x2="140" y2="[底部y-20]"
+          stroke="var(--fg3)" stroke-width="1" stroke-dasharray="4,4"/>
+    <line x1="500" y1="42" x2="500" y2="[底部y-20]"
+          stroke="var(--fg3)" stroke-width="1" stroke-dasharray="4,4"/>
+
+    <!-- ── 消息箭头（从上到下，y 间距 ≥ 50px）──
+         每条消息用 <g class="seq-msg" data-idx="N"> 包裹
+         方向 左→右：x1=140, x2=485（留 15px 给箭头）
+         方向 右→左：x1=500, x2=155（留 15px 给箭头）
+         标签写在线上方 7px：y - 7
+    -->
+
+    <!-- 消息 0：A → B（蓝色） -->
+    <g class="seq-msg" data-idx="0" style="opacity:0">
+      <line x1="140" y1="90" x2="485" y2="90"
+            stroke="var(--hl)" stroke-width="1.5"/>
+      <polygon points="485,85 500,90 485,95" fill="var(--hl)"/>
+      <text x="320" y="83" text-anchor="middle" font-size="12"
+            fill="var(--hl)" font-family="var(--mono)">消息名称 [字段]</text>
+    </g>
+
+    <!-- 消息 1：B → A（绿色） -->
+    <g class="seq-msg" data-idx="1" style="opacity:0">
+      <line x1="500" y1="140" x2="155" y2="140"
+            stroke="var(--nw)" stroke-width="1.5"/>
+      <polygon points="155,135 140,140 155,145" fill="var(--nw)"/>
+      <text x="320" y="133" text-anchor="middle" font-size="12"
+            fill="var(--nw)" font-family="var(--mono)">消息名称 [字段]</text>
+    </g>
+
+    <!-- 丢失消息示例（橙色虚线）-->
+    <!-- <g class="seq-msg" data-idx="N" style="opacity:0">
+      <line x1="140" y1="190" x2="400" y2="190"
+            stroke="var(--sw)" stroke-width="1.5" stroke-dasharray="6,4"/>
+      <text x="270" y="183" text-anchor="middle" font-size="12"
+            fill="var(--sw)" font-family="var(--mono)">丢失的消息 ✗</text>
+    </g> -->
+
+    <!-- 重传消息示例（橙色，末尾加 [重传]）-->
+    <!-- <g class="seq-msg" data-idx="N+1" style="opacity:0">
+      <line x1="140" y1="230" x2="485" y2="230"
+            stroke="var(--sw)" stroke-width="1.5"/>
+      <polygon points="485,225 500,230 485,235" fill="var(--sw)"/>
+      <text x="320" y="223" text-anchor="middle" font-size="12"
+            fill="var(--sw)" font-family="var(--mono)">消息名称 [重传]</text>
+    </g> -->
+  </svg>
+
+  <div id="xx-cap" class="cap">点击"下一步"开始演示...</div>
+  <div class="btns">
+    <button class="btn" onclick="xxGo(-1)">← 上一步</button>
+    <button class="btn" onclick="xxGo(1)">下一步 →</button>
+    <span class="step-info" id="xx-counter">1 / N</span>
+  </div>
+  <p class="kbd-hint">也可使用键盘 <kbd>←</kbd> <kbd>→</kbd> 翻步</p>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     结构 2：滑动窗口 / 帧序列视图
+     适用：停等协议、GBN、SR、TCP滑动窗口
+     ══════════════════════════════════════════════ -->
+<div class="w">
+  <p style="font-size:.88rem;color:var(--fg2);margin:0 0 8px">
+    <b>发送方缓冲区</b>
+  </p>
+  <div id="xx-send-frames" class="frames">
+    <!-- 由 JS 动态生成 .fr 元素 -->
+  </div>
+  <div class="win-label">← 已确认 | 已发未确认 | 窗口内可发 | 窗口外 →</div>
+
+  <p style="font-size:.88rem;color:var(--fg2);margin:8px 0 8px">
+    <b>接收方缓冲区</b>
+  </p>
+  <div id="xx-recv-frames" class="frames">
+    <!-- 由 JS 动态生成 .fr 元素 -->
+  </div>
+  <div class="win-label">← 已接收确认 | 等待中（空洞）| 接收窗口内 →</div>
+
+  <div id="xx-cap" class="cap">初始状态：所有帧待发送...</div>
+  <div class="btns">
+    <button class="btn" onclick="xxGo(-1)">← 上一步</button>
+    <button class="btn" onclick="xxGo(1)">下一步 →</button>
+    <span class="step-info" id="xx-counter">1 / N</span>
+  </div>
+  <p class="kbd-hint">也可使用键盘 <kbd>←</kbd> <kbd>→</kbd> 翻步</p>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     结构 3：拓扑图 + 路由表
+     适用：Dijkstra、RIP距离向量、交换机自学习
+     ══════════════════════════════════════════════ -->
+<div class="w">
+  <div class="dual-panel">
+    <!-- 左：SVG 拓扑图 -->
+    <div>
+      <svg id="xx-topo" width="100%" viewBox="0 0 320 260">
+        <!--
+          节点用 <g id="xx-node-A"> 包裹圆形+标签
+          边用 <g id="xx-edge-A-B"> 包裹线+权值标签
+          节点圆心距 ≥ 80px，半径 r=22
+
+          示例（A-B-C 三角形）：
+        -->
+        <!-- 边（先画，在节点下方）-->
+        <g id="xx-edge-A-B">
+          <line x1="80" y1="80" x2="240" y2="80"
+                stroke="var(--fg3)" stroke-width="1.5"/>
+          <text x="160" y="72" text-anchor="middle" font-size="11"
+                fill="var(--fg3)" font-family="var(--mono)">4</text>
+        </g>
+        <g id="xx-edge-A-C">
+          <line x1="80" y1="80" x2="160" y2="200"
+                stroke="var(--fg3)" stroke-width="1.5"/>
+          <text x="110" y="150" text-anchor="middle" font-size="11"
+                fill="var(--fg3)" font-family="var(--mono)">2</text>
+        </g>
+        <g id="xx-edge-B-C">
+          <line x1="240" y1="80" x2="160" y2="200"
+                stroke="var(--fg3)" stroke-width="1.5"/>
+          <text x="210" y="150" text-anchor="middle" font-size="11"
+                fill="var(--fg3)" font-family="var(--mono)">1</text>
+        </g>
+
+        <!-- 节点 -->
+        <g id="xx-node-A">
+          <circle cx="80" cy="80" r="22"
+                  fill="var(--gnb)" stroke="var(--gn)" stroke-width="1.5"/>
+          <text x="80" y="80" text-anchor="middle" dominant-baseline="central"
+                font-size="14" font-weight="600" fill="var(--gn)"
+                font-family="var(--sans)">A</text>
+        </g>
+        <g id="xx-node-B">
+          <circle cx="240" cy="80" r="22"
+                  fill="var(--gnb)" stroke="var(--gn)" stroke-width="1.5"/>
+          <text x="240" y="80" text-anchor="middle" dominant-baseline="central"
+                font-size="14" font-weight="600" fill="var(--gn)"
+                font-family="var(--sans)">B</text>
+        </g>
+        <g id="xx-node-C">
+          <circle cx="160" cy="200" r="22"
+                  fill="var(--gnb)" stroke="var(--gn)" stroke-width="1.5"/>
+          <text x="160" y="200" text-anchor="middle" dominant-baseline="central"
+                font-size="14" font-weight="600" fill="var(--gn)"
+                font-family="var(--sans)">C</text>
+        </g>
+      </svg>
+    </div>
+
+    <!-- 右：路由/距离表格 -->
+    <div>
+      <table class="route-table">
+        <thead>
+          <tr>
+            <th>节点</th><th>最短距离</th><th>经由</th><th>状态</th>
+          </tr>
+        </thead>
+        <tbody id="xx-rtable">
+          <tr><td>A</td><td>0</td><td>-</td><td>源节点</td></tr>
+          <tr><td>B</td><td>∞</td><td>-</td><td>未访问</td></tr>
+          <tr><td>C</td><td>∞</td><td>-</td><td>未访问</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="xx-cap" class="cap">初始状态：从源节点 A 开始...</div>
+  <div class="btns">
+    <button class="btn" onclick="xxGo(-1)">← 上一步</button>
+    <button class="btn" onclick="xxGo(1)">下一步 →</button>
+    <span class="step-info" id="xx-counter">1 / N</span>
+  </div>
+  <p class="kbd-hint">也可使用键盘 <kbd>←</kbd> <kbd>→</kbd> 翻步</p>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     结构 4：TCP 拥塞控制折线图
+     适用：慢开始、拥塞避免、快重传、快恢复
+     ══════════════════════════════════════════════ -->
+<div class="w">
+  <svg id="xx-chart" width="100%" viewBox="0 0 640 260"
+       style="background:var(--bg)">
+    <!-- 由 cwndInit() 动态绘制 -->
+  </svg>
+
+  <div id="xx-cap" class="cap">点击"下一步"逐步展示拥塞窗口变化...</div>
+  <div class="btns">
+    <button class="btn" onclick="xxGo(-1)">← 上一步</button>
+    <button class="btn" onclick="xxGo(1)">下一步 →</button>
+    <span class="step-info" id="xx-counter">1 / N</span>
+  </div>
+  <p class="kbd-hint">也可使用键盘 <kbd>←</kbd> <kbd>→</kbd> 翻步</p>
+</div>
