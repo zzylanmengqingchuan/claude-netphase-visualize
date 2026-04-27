@@ -6,19 +6,19 @@ A Claude Code skill that transforms computer networking concepts into interactiv
 
 ## Examples
 
-**Protocol Sequence Diagram (TCP Three-Way Handshake):**
+**Protocol Sequence Diagram (TCP Three-Way Handshake and Four-Way Termination):**
 
-![TCP Handshake Demo](./images/handshake-demo.png)
+[TCP interactive demo](https://dkfile.net/zzy/tcp_connection.html) — TCP three-way handshake and four-way termination interactive reference implementation
 
-**Sliding Window Animation (GBN / SR):**
+![TCP connection demo 1](https://zzy-1326340203.cos.ap-beijing.myqcloud.com//image-20260427111927251.png?imageSlim)
 
-![Sliding Window Demo](./images/sliding-window-demo.png)
+![TCP connection demo 2](https://zzy-1326340203.cos.ap-beijing.myqcloud.com//image-20260427112000483.png?imageSlim)
 
-**Routing Algorithm Topology (Dijkstra):**
+![TCP connection demo 3](https://zzy-1326340203.cos.ap-beijing.myqcloud.com//image-20260427112040721.png?imageSlim)
 
-![Dijkstra Demo](./images/dijkstra-demo.png)
+![TCP connection demo 4](https://zzy-1326340203.cos.ap-beijing.myqcloud.com//image-20260427112103839.png?imageSlim)
 
-[Live Demo](https://github.com/zzylanmengqingchuan/claude-netphase-visualize) — TCP connection management full interactive reference
+![TCP connection demo 5](https://zzy-1326340203.cos.ap-beijing.myqcloud.com//image-20260427112119523.png?imageSlim)
 
 ## Features
 

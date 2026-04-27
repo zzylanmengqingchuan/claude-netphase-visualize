@@ -6,19 +6,19 @@
 
 ## 示例
 
-**协议时序图（TCP 三次握手）：**
+**协议时序图（TCP 三次握手&四次挥手）：**
 
-![TCP 握手时序图示例](./images/handshake-demo.png)
+[TCP三次握手四次挥手交互网页](https://dkfile.net/zzy/tcp_connection.html)— TCP 三次握手 & 四次挥手完整交互参考实现
 
-**滑动窗口动画（GBN / SR）：**
+![image-20260427111927251](https://zzy-1326340203.cos.ap-beijing.myqcloud.com//image-20260427111927251.png?imageSlim)
 
-![滑动窗口动画示例](./images/sliding-window-demo.png)
+![image-20260427112000483](https://zzy-1326340203.cos.ap-beijing.myqcloud.com//image-20260427112000483.png?imageSlim)
 
-**路由算法拓扑演示（Dijkstra）：**
+![](https://zzy-1326340203.cos.ap-beijing.myqcloud.com//image-20260427112040721.png?imageSlim)
 
-![Dijkstra 路由演示](./images/dijkstra-demo.png)
+![image-20260427112103839](https://zzy-1326340203.cos.ap-beijing.myqcloud.com//image-20260427112103839.png?imageSlim)
 
-[Live Demo](https://github.com/zzylanmengqingchuan/claude-netphase-visualize) — TCP 三次握手 & 四次挥手完整交互参考实现
+![image-20260427112119523](https://zzy-1326340203.cos.ap-beijing.myqcloud.com//image-20260427112119523.png?imageSlim)
 
 ## 功能
 
