@@ -20,6 +20,10 @@
 
 ![image-20260427112119523](https://zzy-1326340203.cos.ap-beijing.myqcloud.com//image-20260427112119523.png?imageSlim)
 
+[GBN 后退 N 帧协议与 SR 选择重传协议对比分析&动画展示](https://dkfile.istester.com/zzy/gbn_sr_sliding_window.html)
+
+![image-20260427114309943](https://zzy-1326340203.cos.ap-beijing.myqcloud.com//image-20260427114309943.png?imageSlim)
+
 ## 功能
 
 - 生成完整的**单文件交互式 HTML 教学页面**（无外部依赖，浏览器直接打开）

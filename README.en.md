@@ -20,6 +20,10 @@ A Claude Code skill that transforms computer networking concepts into interactiv
 
 ![TCP connection demo 5](https://zzy-1326340203.cos.ap-beijing.myqcloud.com//image-20260427112119523.png?imageSlim)
 
+[GBN Go-Back-N and SR Selective Repeat protocol comparison with animation](https://dkfile.istester.com/zzy/gbn_sr_sliding_window.html)
+
+![GBN and SR sliding window comparison](https://zzy-1326340203.cos.ap-beijing.myqcloud.com//image-20260427114309943.png?imageSlim)
+
 ## Features
 
 - Generates **complete single-file interactive HTML pages** (no external dependencies)
